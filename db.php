@@ -1,9 +1,8 @@
 <?php
-$host = 'localhost';
-$db   = 'atiera_1';
-$user = 'root';    
-$pass = '';        
-
+$host = 'localhost';     
+$db   = 'core1_atiera_1';
+$user = 'core1_db'; 
+$pass = 'doms14';          
 $dsn = "mysql:host=$host;dbname=$db;charset=utf8mb4";
 
 try {
