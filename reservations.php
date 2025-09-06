@@ -81,7 +81,7 @@ $roomsForSelect = $pdo->query("SELECT id, room_number, type, status FROM rooms O
   <div class="d-flex justify-content-between align-items-center mb-4">
     <div class="d-flex align-items-center">
       <img src="download.png" alt="ATIÉRA Logo" style="height:50px; margin-right:12px;">
-      <h2 class="fw-bold text-white mb-0">Reservations & Booking</h2>
+      <h2 class="fw-bold text-white mb-0">Reservations For Booking</h2>
     </div>
     <a href="home.php" class="btn btn-outline-light">⬅ Back</a>
   </div>
