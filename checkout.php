@@ -2,14 +2,14 @@
 include 'db.php';
 $message = "";
 
-// Fetch all checked-in guests
+
 $guests = $pdo->query("SELECT guest_name, room_number FROM checkins WHERE status='Checked In'")->fetchAll();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $guest_name = $_POST['guest_name'];
     $checkout_date = $_POST['checkout_date'];
 
-    // Get guest's room number
+    
     $stmt = $pdo->prepare("SELECT room_number FROM checkins WHERE guest_name=? AND status='Checked In'");
     $stmt->execute([$guest_name]);
     $guest = $stmt->fetch();
@@ -19,11 +19,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $room_number = $guest['room_number'];
 
-        // Update checkin record
         $stmt = $pdo->prepare("UPDATE checkins SET status='Checked Out', checkout_date=? WHERE guest_name=? AND status='Checked In'");
         $stmt->execute([$checkout_date, $guest_name]);
 
-        // Update room status to Available
+      
         $pdo->prepare("UPDATE rooms SET status='Available' WHERE room_number=?")->execute([$room_number]);
 
         $message = "✅ Guest successfully checked out!";
@@ -65,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
   <?php endif; ?>
 
-  <!-- Back Button -->
+ 
   <div class="mb-4">
     <a href="index.php" 
        class="inline-block bg-gray-300 hover:bg-gray-400 text-black font-semibold px-4 py-2 rounded-lg shadow-sm transition">
