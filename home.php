@@ -90,6 +90,7 @@
       <li class="nav-item"><a href="restaurant.php" class="nav-link">Restaurant</a></li>
       <li class="nav-item"><a href="housekeeping.php" class="nav-link">Housekeeping</a></li>
       <li class="nav-item"><a href="analytics.php" class="nav-link">Analytics</a></li>
+      <li class="nav-item"><a href="frontdesk.php" class="nav-link">Check In</a></li>
     </ul>
   </div>
 </nav>
