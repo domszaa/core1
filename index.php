@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,11 +22,16 @@
         <img src="aa.png" alt="Logo" class="h-16 w-auto"> 
       </div>
       <nav class="space-x-6 font-semibold">
-        <a href="home.php" class="hover:text-yellow-400">Home</a>
+        <a href="index.php" class="hover:text-yellow-400">Home</a>
         <a href="reservations.php" class="hover:text-yellow-400">Reservation</a>
         <a href="restaurant.php" class="hover:text-yellow-400">Dine</a>
         <a href="housekeeping.php" class="hover:text-yellow-400">Housekeeping</a>
         <a href="analytics.php" class="hover:text-yellow-400">Analytics</a>
+        <?php if (isset($_SESSION["user_id"])): ?>
+          <a href="logout.php" class="hover:text-yellow-400">Logout</a>
+        <?php else: ?>
+          <a href="login.php" class="hover:text-yellow-400">Login</a>
+        <?php endif; ?>
       </nav>
     </div>
   </header>
@@ -43,7 +49,7 @@
         <a href="https://core2.atierahotelandrestaurant.com/" class="bg-yellow-500 hover:bg-yellow-600 text-black px-8 py-3 rounded-full text-lg font-medium shadow-lg transition">
           Visit Restaurant
         </a>
-        <a href="checkin.php" class="bg-yellow-500 hover:bg-yellow-600 text-black px-8 py-3 rounded-full text-lg font-medium shadow-lg transition">
+        <a href="book.php" class="bg-yellow-500 hover:bg-yellow-600 text-black px-8 py-3 rounded-full text-lg font-medium shadow-lg transition">
           Book Now
         </a>
       </div>
@@ -58,5 +64,3 @@
   </footer>
 </body>
 </html>
-
-pede mo bang gawin is pag pinindot yung book now is pupunta muna sa login bago sa checkin need muna mag log bago maka punta sa checkin
