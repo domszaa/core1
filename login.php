@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "db.php"; 
+require "db.php";
 
 $error = "";
 
@@ -16,7 +16,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($user && password_verify($password, $user["password"])) {
             $_SESSION["username"] = $username;
             $_SESSION["user_id"] = $user["id"];
-            header("Location: restaurant.php");
+
+            // If redirected from Book Now, go back there
+            if (isset($_SESSION["redirect_after_login"])) {
+                $redirect = $_SESSION["redirect_after_login"];
+                unset($_SESSION["redirect_after_login"]);
+                header("Location: " . $redirect);
+                exit();
+            }
+
+            header("Location: index.php");
             exit();
         } else {
             $error = "❌ Invalid username or password!";
@@ -55,13 +64,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       height: 60px;
       margin-bottom: 10px;
     }
-    .login-header h3 {
-      color: white;
-      font-weight: bold;
-      margin: 0;
-      font-size: 1.5rem;
-      letter-spacing: 2px;
-    }
     .btn-red {
       background-color: #8B0000;
       color: white;
@@ -73,12 +75,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </style>
 </head>
 <body>
-
   <div class="card shadow-lg login-card">
     <div class="login-header">
-      <img src="aa.png" alt=>
+      <img src="aa.png" alt="Logo">
+      <h3 class="text-white">Login</h3>
     </div>
-
     <div class="card-body">
       <?php if ($error): ?>
         <div class="alert alert-danger py-2"><?php echo $error; ?></div>
@@ -101,6 +102,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </p>
     </div>
   </div>
-
 </body>
 </html>
